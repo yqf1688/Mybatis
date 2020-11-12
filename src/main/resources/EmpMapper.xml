@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不同Mapper文件的namespace值应该保证唯一 在程序中通过[ namespace + id ]定位到要执行哪一条SQL语句 -->
+<mapper namespace="EmpMapper">
+	<!-- 练习9: 动态指定要查询的列 -->
+	<select id="findAll2" resultType="cn.tedu.entity.Emp">
+		select ${cols} from emp
+	</select>
+	<delete id="empDelete02">
+		delete from emp where id=#{id}
+	</delete>
+	<update id="empUpdate02">
+		update emp set job=#{job},salary=#{salary} where
+		name=#{name}
+	</update>
+	<insert id="empInsert02">
+		insert into emp
+		value(id=#{id},name=#{name},job=#{job},salary=#{salary})
+	</insert>
+
+	<select id="findAllId" resultType="cn.tedu.entity.Emp">
+		select id,name,job,salary from
+		emp where id=#{id}
+	</select>
+	<select id="findAll01" resultType="cn.tedu.entity.Emp">
+		select * from emp
+	</select>
+	<insert id="empInsert">
+		insert into emp value(null,'赵云','战士',5300.0)
+	</insert>
+	<update id="empUpdate">
+		update emp set salary=salary+1000 where name='赵云'
+	</update>
+	<delete id="empDelete">
+		delete from emp where name='赵云'
+	</delete>
+</mapper>
